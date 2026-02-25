@@ -125,6 +125,12 @@ main.content h2 {
 .nav-brand {
   font-weight: 700;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 0.9rem;
+  color: var(--fg);
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .nav-path {
