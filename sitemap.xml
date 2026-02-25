@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>http://localhost:7878/</loc>
+    </url>
+    <url>
+        <loc>http://localhost:7878/art/</loc>
+    </url>
+    <url>
+        <loc>http://localhost:7878/blog/</loc>
+    </url>
+    <url>
+        <loc>http://localhost:7878/blog/latex/</loc>
+        <lastmod>2026-01-20</lastmod>
+    </url>
+    <url>
+        <loc>http://localhost:7878/blog/putnam/</loc>
+        <lastmod>2025-12-10</lastmod>
+    </url>
+    <url>
+        <loc>http://localhost:7878/blog/rust/</loc>
+        <lastmod>2025-03-04</lastmod>
+    </url>
+    <url>
+        <loc>http://localhost:7878/links/</loc>
+    </url>
+    <url>
+        <loc>http://localhost:7878/projects/</loc>
+    </url>
+</urlset>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Claudio</title>
+    <subtitle>Personal website and blog.</subtitle>
+    <link rel="self" type="application/atom+xml" href="http://localhost:7878/atom.xml"/>
+    <link rel="alternate" type="text/html" href="http://localhost:7878"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-01-20T00:00:00+00:00</updated>
+    <id>http://localhost:7878/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Writing LaTeX</title>
+        <published>2026-01-20T00:00:00+00:00</published>
+        <updated>2026-01-20T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="http://localhost:7878/blog/latex/"/>
+        <id>http://localhost:7878/blog/latex/</id>
+        
+        <content type="html" xml:base="http://localhost:7878/blog/latex/">&lt;style&gt;
+.row-container {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+
+.side-label {
+  position: absolute;
+  left: -200px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  color: var(--red-2);
+  font-family: monospace;
+  font-size: 1.1em;
+}
+
+
+.item {
+  width: 80px;
+  padding: 10px;
+  background: #550000;
+  border: 2px solid #333;
+  text-align: center;
+  border-radius: 5px;
+}
+&lt;&#x2F;style&gt;
+&lt;p&gt;If you can&#x27;t tell from the subject, I am quite obsessive about how I set up stuff on my computer.
+To be honest, the time I save by having a slightly more efficient setup is most likely fully cancelled out by the
+time I spend obsessing about it.
+Therefore in no way am I saying you should write LaTeX like me, but if you are so inclined to be interested I want
+to talk about my opinions and practices regarding writing LaTeX code.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-setup&quot;&gt;The Setup&lt;&#x2F;h2&gt;
+&lt;p&gt;In general, my philosophy for setting up and writing LaTeX prioritizes the following three things in decreasing
+order of importance:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Convenience, ease of use, and laziness&lt;&#x2F;li&gt;
+&lt;li&gt;Aesthetic quality of the result&lt;&#x2F;li&gt;
+&lt;li&gt;Cleanliness and organization of the code&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;After a long time, I have decided that the best way to accomplish this is with the following structure:&lt;&#x2F;p&gt;
+&lt;div class=&quot;container&quot;&gt;
+&lt;div class=&quot;root&quot;&gt;Preamble&lt;&#x2F;div&gt;
+&lt;svg class=&quot;lines&quot; width=&quot;320&quot; height=&quot;60&quot;&gt;&lt;line x1=&quot;160&quot; y1=&quot;0&quot; x2=&quot;50&quot; y2=&quot;50&quot; stroke=&quot;#333&quot; stroke-width=&quot;2&quot; &#x2F;&gt;&lt;line x1=&quot;160&quot; y1=&quot;0&quot; x2=&quot;160&quot; y2=&quot;50&quot; stroke=&quot;#333&quot; stroke-width=&quot;2&quot; &#x2F;&gt;&lt;line x1=&quot;160&quot; y1=&quot;0&quot; x2=&quot;270&quot; y2=&quot;50&quot; stroke=&quot;#333&quot; stroke-width=&quot;2&quot; &#x2F;&gt;&lt;&#x2F;svg&gt;
+&lt;div class=&quot;row-container&quot;&gt;
+&lt;div class=&quot;side-label&quot;&gt;documentclass:&lt;&#x2F;div&gt;
+&lt;div class=&quot;item&quot;&gt;PSet&lt;&#x2F;div&gt;
+&lt;div class=&quot;item&quot;&gt;Paper&lt;&#x2F;div&gt;
+&lt;div class=&quot;item&quot;&gt;Report&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;I believe this is the standard way to do things, but nonetheless, I have met a surprising number of people who are
+unfamiliar with this methodology.
+Essentially, I put stuff in my preamble that I want to include in all my tex files.
+This includes things like math commands, some packages, and the way I like the enumerate environment to act.&lt;&#x2F;p&gt;
+&lt;p&gt;In each &lt;code&gt;.cls&lt;&#x2F;code&gt; file I import the preamble via the &lt;code&gt;\input{}&lt;&#x2F;code&gt; command.
+I have different document classes defined for different purposes.
+The document class contains all the specific stuff, like theorem environments, code for how the title and
+bibliography should look, etc.
+Then, using the document class is as simple as putting it in the &lt;code&gt;\documentclass{}&lt;&#x2F;code&gt; command.&lt;&#x2F;p&gt;
+&lt;p&gt;This avoids having long and identical preambles at the start of everything I write, and means that any change will
+propagate through everything I do later.&lt;&#x2F;p&gt;
+&lt;p&gt;In terms of the actual aesthetics, my taste is generally quite conservative for subjects like physics and math,
+and less so for things such as chemistry or biology.
+In math, I believe that excessive decorations, colors, or boxes can distract from the mathematics, cause visual
+clutter, and give me a headache to read.
+I don&#x27;t want to be getting distracted by bright colors when I need to use my entire brainpower to understand the
+mathematics.
+Therefore my style has minimal decorations, only using them where it greatly helps to organize the document.&lt;&#x2F;p&gt;
+&lt;p&gt;In chemistry or biology, which are a bit less linear than math, and more focused on specifics of experimental
+procedure or other complicated details, it pays to have more organizational cues.
+Without them it would be almost impossible to keep track of which information relates to which other information,
+since things tend to get complicated.&lt;&#x2F;p&gt;
+&lt;p&gt;As a sidenote, I believe the merit of this philosophy is broadly reflected in how textbooks look in different
+subjects.
+Math textbooks are generally black and white, with an extremely homogenous format throughout the entire thing.
+Chemistry and biology textbooks tend to be super colorful, with lots of boxes and visual decorations.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-writing&quot;&gt;The Writing&lt;&#x2F;h2&gt;
+&lt;p&gt;One of the most important personal choices in how you write latex code is the code editor.
+I would conjecture the most popular options are:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Overleaf&lt;&#x2F;li&gt;
+&lt;li&gt;Visual Studio Code&lt;&#x2F;li&gt;
+&lt;li&gt;Vim or Neovim&lt;&#x2F;li&gt;
+&lt;li&gt;Texmaker or some other dedicated software&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;I would claim that Visual Studio Code or Neovim are the best options.
+They both have the advantage of customizability, a vibrant plugin system, offline use, and highly optimized shortcuts.
+More broadly, they are capable and customizable code editors, and to be honest using something other than a code editor to write LaTeX doesn&#x27;t make sense to me.
+People have spent years and countless hours perfecting the process of writing code, and writing LaTeX is quite similar to writing code.
+I also write a lot of code, so it makes sense to use the same software for both tasks.&lt;&#x2F;p&gt;
+&lt;p&gt;I personally use Neovim, which I learned around freshman year and after a period of getting used to it I find it gives a nice coding experience.
+I am by no means a neovim wizard, however I know all the basic keybinds needed to get the job done.
+I&#x27;m not really sure if it actually increases my efficiency at all since its been such a long time since I&#x27;ve used something else, but I would conjecture that it makes writing text feel a bit smoother and more subconscious.
+For instance, physics has a lot of integrals which are a pain to write out like &lt;code&gt;\int_{-\infty}^\infty f \, dx&lt;&#x2F;code&gt;.
+However due to &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;L3MON4D3&#x2F;LuaSnip&quot;&gt;LuaSnip&lt;&#x2F;a&gt;, if I type
+&lt;code&gt;intinf&lt;&#x2F;code&gt; &lt;code&gt;ENTER&lt;&#x2F;code&gt; &lt;code&gt;f&lt;&#x2F;code&gt; &lt;code&gt;TAB&lt;&#x2F;code&gt; &lt;code&gt;x&lt;&#x2F;code&gt;
+then I&#x27;m done since I have a shortcut for these integrals.
+There is a much more direct line from by brain to the text than if I didn&#x27;t have these shortcuts.
+These days I use &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.lazyvim.org&#x2F;&quot;&gt;LazyVim&lt;&#x2F;a&gt;, which is quite customizable but at the same time gives a very nice premade setup and reduces maintenance load.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Math Competitions</title>
+        <published>2025-12-10T00:00:00+00:00</published>
+        <updated>2025-12-10T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="http://localhost:7878/blog/putnam/"/>
+        <id>http://localhost:7878/blog/putnam/</id>
+        
+        <content type="html" xml:base="http://localhost:7878/blog/putnam/">&lt;p&gt;I tentatively believe that I have managed to give a very good performance in the Putnam exam.
+Of course, I still need to wait for scores to come out, but after looking at AOPS solutions and comparing to mine
+I&#x27;m confident that I did extremely well.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;mindset&quot;&gt;Mindset&lt;&#x2F;h2&gt;
+&lt;p&gt;Math competitions have probably been my
+biggest hobby since high school (about seven years running).
+Broadly, I would conjecture that math competitions test the following things in decreasing order of importance:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Your problem solving abilities and intuition, especially as it pertains to the topics covered by the exam (elem nmbr theory, combo, etc)&lt;&#x2F;li&gt;
+&lt;li&gt;Your ability to handle extreme pressure&lt;&#x2F;li&gt;
+&lt;li&gt;Your luck, and how well the problems are suited to your skills&lt;&#x2F;li&gt;
+&lt;li&gt;Your speed&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Due to studying so much over a long period of time, and my mock test performances, I would claim that I am in decent standing in terms of (1), at least in the subjects that I focus on.
+However (2) is a big issue for me.
+When you are studying hours a day for a competition that shows up only once a year, and you&#x27;ve historically had disappointing performances, that kind of pressure can annihilate your sleep the night before and make you unable to even read the problem statements correctly.&lt;&#x2F;p&gt;
+&lt;p&gt;In terms of getting over anxiety on math competitions, a good way might be to fully dissociate yourself from the result of the competition.
+I would say I achieved this on the most recent contest.
+Another important factor was the testing room.
+UChicago as a whole does not care much about math competitions.
+We&#x27;ve previously been packed into a tiny lecture hall, with those crappy desks with a fold out contraption that can&#x27;t even fit a single piece of paper (If you&#x27;re in college, I know you know what I&#x27;m talking about).
+I was bumping elbows with the people next to me since every single seat was filled.
+If you ask me, this is extremely disrespectful to hundreds or thousands of hours students put into this exam.
+I mean, we only ask to be accommodated a single day out of the entire year.&lt;&#x2F;p&gt;
+&lt;p&gt;After a lot of emailing and pushing towards the administration, we managed to get a whopping two rooms this year.
+Unfortunately, we still had the fold out contraptions instead of a real desk, however, there at least were two feet of space between me and the next student and a place to put my pens and scratch paper other than the floor.&lt;&#x2F;p&gt;
+&lt;p&gt;I will say that on this most recent competition, I felt calm, focused, and relaxed.
+I even managed to sleep the night before the exam.
+This definitely boosted my performance.
+Even besides these factors, the test also felt perfectly suited for my skillset (factor (3)).
+The analysis problems (my worst subject) were all early in the exam, and the &quot;deciding problems&quot; in the 3-5 range were quite algebraic.
+My favorite categories in the MIT sheets are linear algebra, algebra, and congruences, so you might guess that this past exam would suit me.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;preparations&quot;&gt;Preparations&lt;&#x2F;h2&gt;
+&lt;p&gt;In order to prepare for the 2024 competition, I did nearly all the exam problems from the past 12ish years with my friend Jack.
+The downside to this is that going into 2025 I had &quot;run out&quot; of problems to do since the earlier years are not very representative of the modern exam.
+Therefore, I needed a new source of problems to do.&lt;&#x2F;p&gt;
+&lt;p&gt;I figured that the MIT students are always dominating the Putnam, and a quick google search pulls up many claims that Yufei Zhao has perfected the art of training Putnam competitors (a claim I wholeheartedly believe).
+Therefore, I started doing the problem sheets from their &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;yufeizhao.com&#x2F;a34&#x2F;&quot;&gt;Putnam seminar&lt;&#x2F;a&gt;.
+I must deeply thank Professor Zhao for putting these problems online.&lt;&#x2F;p&gt;
+&lt;p&gt;Over a very long period of time I managed to finish a large amount of the problems.
+In terms of how I did these problems, this was my procedure:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Select a category based on my mood and vibes.&lt;&#x2F;li&gt;
+&lt;li&gt;Try to solve a problem; if I can&#x27;t I&#x27;ll come back to it later or collaborate with someone else (usually my friend Jack).&lt;&#x2F;li&gt;
+&lt;li&gt;If I do solve the problem, I&#x27;ll write up a solution sketch to make sure I&#x27;m not fooling myself.&lt;&#x2F;li&gt;
+&lt;li&gt;After solving, I&#x27;ll try to find other solutions online or with AI. Then I&#x27;ll compare and possibly change my solution to be more clean and elegant.
+I am generally extremely concerned about having the &quot;best&quot; solution to every problem, and I feel great regret in seeing a better solution even if I did manage to solve a problem.
+There is also some great satisfaction in really digging into the core reason why something is true and exposing it fully in the most direct and efficient way.&lt;&#x2F;li&gt;
+&lt;li&gt;Finally, I will try to find and explore possible connections to higher math topics.
+The problems in the MIT sheets are very nice in the sense that there are many such connections, especially in categories such as linear algebra.
+Finding and exploring them allows one to get more out of each problem.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;If you are interested, &lt;a href=&quot;&#x2F;solutions&#x2F;putnam&#x2F;linalg.pdf&quot;&gt;here&lt;&#x2F;a&gt; is a sample of my solution (sketches) that I decided to TeX up (on one of my favorite categories, linear algebra).
+If you want to discuss any problems on the MIT sheets feel free to email me, of course, there is a chance I won&#x27;t have done it, in particular if it&#x27;s on the more analytic side or very bashy.&lt;&#x2F;p&gt;
+&lt;p&gt;I must say doing these problems helped me tremendously, and I would recommend them to everyone who is taking the Putnam competition seriously.
+In all honestly, there is no way to get good at math competitions except doing a ton of problems.
+Of course, there are a lot of problems on the sheets, many of which are P5-P6 level (granted, knowing the subject makes them much easier), so it goes without saying solving
+any significant amount them is a massive endeavor.
+If you don&#x27;t have much time, doing all the hearted problems is a good middle ground.
+They tend to be the type of problems that really teach you something when you solve it.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>My Opinion on Rust</title>
+        <published>2025-03-04T00:00:00+00:00</published>
+        <updated>2025-03-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="http://localhost:7878/blog/rust/"/>
+        <id>http://localhost:7878/blog/rust/</id>
+        
+        <content type="html" xml:base="http://localhost:7878/blog/rust/">&lt;p&gt;I attempted to learn Rust, which some hail as a C replacement.
+Overall, Rust is a fantastic programming language, with lots of great design choices.
+It is very good at certain tasks, but I can&#x27;t quite view it as a C replacement.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;pros&quot;&gt;Pros&lt;&#x2F;h2&gt;
+&lt;p&gt;Rust makes a lot of good decisions which I think other languages should learn from.
+The borrow checker is a novel and brilliant idea.
+Furthermore, the syntax is modernized (I love the type names) and extremely logical (the idea of every scope returning a value is brilliant).
+Don&#x27;t even get me started on cargo, it is probably the best build system&#x2F;package manager I have ever used.&lt;&#x2F;p&gt;
+&lt;p&gt;The biggest plus is obviously the novel combination of memory safety and speed.
+These factors make Rust the best language (in my opinion) for use cases which demand extreme performance and reliability, without requiring too many complicated data structures.&lt;&#x2F;p&gt;
+&lt;p&gt;It is clear that Rust is a language in which you declare a lot of intent to the compiler.
+This can sometimes be a con, as I talk about below.
+However perhaps it may also become a pro.
+My hope is that eventually Rust code will be optimized more aggressively than C.
+For instance, in C, very few are willing to go around putting the restrict keyword everywhere they can.
+Rust on the other hand sort of forces you to tell the compiler these things, and therefore may allow for more aggressive optimization once compilers adapt to Rust.
+This is all just speculation through.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cons&quot;&gt;Cons&lt;&#x2F;h2&gt;
+&lt;p&gt;At this point I would like to challenge the reader to implement a doubly linked list or a binary tree in Rust without looking at a guide.
+This is an intuitive task in C, just draw something on a blackboard and set up all the pointers how you would expect.
+In Rust it is a pain, there is no way around it.
+I might have a skill issue, but I find the experience of coding in Rust to be similar to coding in C, except you have an imp on your shoulder (the borrow checker) who won&#x27;t let you run your code until you convince them that it will work.
+Rust has bunch of different kinds of objects (Box, Rc, Cell, etc), it turns out they are all pointers but you are only allowed to use each one in a very specific way.&lt;&#x2F;p&gt;
+&lt;p&gt;Personally, I would sometimes rather that my compiler just trusted me and ran the code without me needing to convince it that I know what I&#x27;m doing.
+This inevitably leads to memory leaks, segmentation faults, and data corruption, however I can catch this stuff quite well with valgrind.
+Furthermore, I am a big fan of simplicity, and having a single framework (pointers) which can be extended to accomplish any task is very nice on a moral level.
+The excessive number of different pointer types Rust has on the other hand is not aesthetically pleasing.
+However I can understand why it is necessary and I still find Rust to be a fantastic language.
+I can&#x27;t wait to see where it goes.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

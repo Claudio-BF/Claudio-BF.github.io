@@ -1,0 +1,394 @@
+:root {
+  --bg: #1a1a1a;
+  --fg: #a0a0a0;
+  --red-1: #dd0000;
+  --red-2: #770000;
+  --red-3: #260000;
+  --red-4: #300000;
+  --red-5: #8b0000;
+  --red-6: #a52a2a;
+  --nav: #7a0404;
+  --panel: #151515;
+  --code-bg: #252525;
+  --code-border: #8b0000;
+
+  /* Layout tuning */
+  --content-max: 1100px;
+
+  /* Navbar hover strip */
+  --nav-hover: #2a1a1a;
+  --focus-ring: rgba(255, 255, 255, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+/* Links */
+a {
+  color: var(--red-1);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ff4d4d;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #ffffff;
+}
+
+/* Layout */
+main.content {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 20px 1rem;
+  font-size: 1.00rem;
+  line-height: 1.65;
+}
+
+main.content h2 {
+  color: var(--red-1);
+}
+
+.site-header {
+  background-color: var(--nav);
+}
+
+.site-nav {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 1rem;
+  font-size: 1.15rem;
+
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.site-nav--tree {
+  justify-content: flex-start;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.nav-action {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 0.9rem;
+  color: #b0b0b0;
+  text-decoration: none;
+  background: transparent;
+  transition: background-color 140ms ease;
+}
+
+/* Keep navbar text color stable (don’t inherit global link hover styles) */
+.nav-action:hover,
+.nav-action:focus-visible,
+.nav-action:active {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.nav-action:hover,
+.nav-action:focus-visible {
+  background-color: var(--nav-hover);
+}
+
+.nav-action:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+.nav-brand {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.nav-path {
+  margin-left: auto;
+  padding: 0.85rem 0;
+  text-align: right;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.nav-current {
+  color: var(--fg);
+}
+
+.nav-subtitle {
+  margin-top: 0.15rem;
+  font-weight: 400;
+  color: var(--fg);
+  font-size: 0.9em;
+}
+
+@media (max-width: 600px) {
+  .nav-path {
+    margin-left: 0;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Blog list cards */
+.post {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+
+  border: 3px solid #000;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: var(--panel);
+
+  border-radius: 8px;
+  transition: box-shadow 0.15s ease;
+}
+
+/* prevent global link hover styles from changing card text */
+.post:hover,
+.post:visited,
+.post:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post:hover {
+  box-shadow: 0 0 0 1px var(--red-1);
+}
+
+.date {
+  position: relative;
+  top: 0;
+  left: 0;
+  float: right;
+  padding: 5px;
+  background-color: #180000;
+  color: #800000;
+  font-size: 20px;
+  display: inline-block;
+}
+
+/* Footer on blog post pages */
+.post-footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 3px;
+  background-color: #220000;
+  color: var(--red-2);
+}
+
+/* “Big link” style used throughout the original site */
+.link {
+  color: #ff4400;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  margin: 1em 0;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: darkorange;
+  text-decoration: none;
+}
+
+/* Code blocks (Markdown fences -> <pre><code>) */
+pre {
+  background-color: var(--code-bg);
+  border: 1px solid var(--code-border);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+pre code {
+  font-family: "Courier New", Courier, monospace;
+  white-space: pre-wrap;
+}
+
+/* Inline code */
+code {
+  background-color: var(--code-bg);
+  color: #ccc;
+  padding: 0.1em 0.25em;
+  border-radius: 4px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Don’t double-style code inside pre */
+pre code {
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+}
+
+/* Generic section list */
+.section-list {
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+}
+
+/* Art gallery */
+.image-gallery {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.image-wrapper {
+  position: relative;
+  flex: 0 0 auto;
+  height: 800px;
+}
+
+.gallery-image {
+  height: 800px;
+  width: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--red-3);
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+  display: block;
+}
+
+.gallery-image:hover {
+  border-color: var(--red-1);
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--red-1);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.image-wrapper:hover .tooltip {
+  opacity: 1;
+}
+
+/* LaTeX post diagram styles (used by content/blog/latex.md) */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.root {
+  padding: 10px 20px;
+  background: #550000;
+  color: lightgray;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.lines {
+  width: 320px;
+  height: 50px;
+}
+
+/* Password-protected page (links) */
+.pw {
+  max-width: 34rem;
+  margin: 0 auto 1.25rem;
+  padding: 1rem;
+  background: var(--panel);
+  border: 2px solid var(--code-border);
+  border-radius: 10px;
+}
+
+.pw-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.pw-label {
+  grid-column: 1 / -1;
+  font-weight: 700;
+}
+
+.pw-input {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid #000;
+  background: #0f0f0f;
+  color: var(--fg);
+}
+
+.pw-btn {
+  padding: 0.55rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #000;
+  background: var(--nav);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.pw-btn:disabled,
+.pw-input:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.pw-hint {
+  grid-column: 1 / -1;
+  margin: 0.25rem 0 0;
+  opacity: 0.9;
+}
+
+.pw-err {
+  grid-column: 1 / -1;
+  margin: 0.25rem 0 0;
+  color: #ff4d4d;
+}
+
