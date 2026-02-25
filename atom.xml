@@ -53,11 +53,8 @@
   border-radius: 5px;
 }
 &lt;&#x2F;style&gt;
-&lt;p&gt;If you can&#x27;t tell from the subject, I am quite obsessive about how I set up stuff on my computer.
-To be honest, the time I save by having a slightly more efficient setup is most likely fully cancelled out by the
-time I spend obsessing about it.
-Therefore in no way am I saying you should write LaTeX like me, but if you are so inclined to be interested I want
-to talk about my opinions and practices regarding writing LaTeX code.&lt;&#x2F;p&gt;
+&lt;p&gt;These are my thoughts and opinions on writing LaTeX code.
+Of course, this is just my way of doing things, I do not claim that this is the best way of doing things.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;the-setup&quot;&gt;The Setup&lt;&#x2F;h2&gt;
 &lt;p&gt;In general, my philosophy for setting up and writing LaTeX prioritizes the following three things in decreasing
 order of importance:&lt;&#x2F;p&gt;
@@ -114,8 +111,8 @@ I would conjecture the most popular options are:&lt;&#x2F;p&gt;
 &lt;&#x2F;ol&gt;
 &lt;p&gt;I would claim that Visual Studio Code or Neovim are the best options.
 They both have the advantage of customizability, a vibrant plugin system, offline use, and highly optimized shortcuts.
-More broadly, they are capable and customizable code editors, and to be honest using something other than a code editor to write LaTeX doesn&#x27;t make sense to me.
-People have spent years and countless hours perfecting the process of writing code, and writing LaTeX is quite similar to writing code.
+More broadly, they are capable and customizable code editors.
+People have spent years and countless hours perfecting the process of writing code, and writing LaTeX is quite similar to writing code, so it makes sense to use a code editor.
 I also write a lot of code, so it makes sense to use the same software for both tasks.&lt;&#x2F;p&gt;
 &lt;p&gt;I personally use Neovim, which I learned around freshman year and after a period of getting used to it I find it gives a nice coding experience.
 I am by no means a neovim wizard, however I know all the basic keybinds needed to get the job done.
@@ -162,13 +159,13 @@ Broadly, I would conjecture that math competitions test the following things in 
 However (2) is a big issue for me.
 When you are studying hours a day for a competition that shows up only once a year, and you&#x27;ve historically had disappointing performances, that kind of pressure can annihilate your sleep the night before and make you unable to even read the problem statements correctly.&lt;&#x2F;p&gt;
 &lt;p&gt;In terms of getting over anxiety on math competitions, a good way might be to fully dissociate yourself from the result of the competition.
-I would say I achieved this on the most recent contest.
+This is of course easier said than done, but I would say I have achieved this on the most recent contest.
 Another important factor was the testing room.
 UChicago as a whole does not care much about math competitions.
 We&#x27;ve previously been packed into a tiny lecture hall, with those crappy desks with a fold out contraption that can&#x27;t even fit a single piece of paper (If you&#x27;re in college, I know you know what I&#x27;m talking about).
 I was bumping elbows with the people next to me since every single seat was filled.
 If you ask me, this is extremely disrespectful to hundreds or thousands of hours students put into this exam.
-I mean, we only ask to be accommodated a single day out of the entire year.&lt;&#x2F;p&gt;
+We only ask to be accommodated a single day out of the entire year.&lt;&#x2F;p&gt;
 &lt;p&gt;After a lot of emailing and pushing towards the administration, we managed to get a whopping two rooms this year.
 Unfortunately, we still had the fold out contraptions instead of a real desk, however, there at least were two feet of space between me and the next student and a place to put my pens and scratch paper other than the floor.&lt;&#x2F;p&gt;
 &lt;p&gt;I will say that on this most recent competition, I felt calm, focused, and relaxed.
@@ -178,7 +175,7 @@ Even besides these factors, the test also felt perfectly suited for my skillset 
 The analysis problems (my worst subject) were all early in the exam, and the &quot;deciding problems&quot; in the 3-5 range were quite algebraic.
 My favorite categories in the MIT sheets are linear algebra, algebra, and congruences, so you might guess that this past exam would suit me.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;preparations&quot;&gt;Preparations&lt;&#x2F;h2&gt;
-&lt;p&gt;In order to prepare for the 2024 competition, I did nearly all the exam problems from the past 12ish years with my friend Jack.
+&lt;p&gt;In order to prepare for the 2024 competition, I did nearly all the exam problems from the past 12ish years.
 The downside to this is that going into 2025 I had &quot;run out&quot; of problems to do since the earlier years are not very representative of the modern exam.
 Therefore, I needed a new source of problems to do.&lt;&#x2F;p&gt;
 &lt;p&gt;I figured that the MIT students are always dominating the Putnam, and a quick google search pulls up many claims that Yufei Zhao has perfected the art of training Putnam competitors (a claim I wholeheartedly believe).
