@@ -1,23 +1,43 @@
 :root {
-  --bg: #1a1a1a;
-  --fg: #a0a0a0;
-  --red-1: #dd0000;
-  --red-2: #770000;
-  --red-3: #260000;
-  --red-4: #300000;
-  --red-5: #8b0000;
-  --red-6: #a52a2a;
-  --nav: #7a0404;
-  --panel: #151515;
-  --code-bg: #252525;
-  --code-border: #8b0000;
+  /* Typography */
+  --font-family-body: Arial, sans-serif;
+  --font-family-code: "Courier New", Courier, monospace;
+  --font-size-body: 1.3rem;
+  --font-size-navigation: 1.15rem;
+  --font-size-navigation-subtitle: 0.9em;
+  --font-size-post-date: 20px;
+  --font-size-feature-link: 18px;
+  --font-size-tooltip: 12px;
 
-  /* Layout tuning */
-  --content-max: 1100px;
+  /* Text and accent colors */
+  --color-text-primary: #c8c8c8;
+  --color-text-code: #cccccc;
+  --color-text-diagram: #d3d3d3;
+  --color-text-active: #ffffff;
+  --color-text-warning: #ffd166;
+  --color-accent: #60b456;
+  --color-accent-muted: #40983a;
+  --color-accent-deep: #256c20;
+  --color-accent-hover: #c7ff91;
 
-  /* Navbar hover strip */
-  --nav-hover: #2a1a1a;
-  --focus-ring: rgba(255, 255, 255, 0.35);
+  /* Background and border colors */
+  --color-page-background: #051005;
+  --color-navigation-background: #0b190b;
+  --color-navigation-hover: #202020;
+  --color-panel-background: #151515;
+  --color-code-background: #1a1a1a;
+  --color-input-background: #0f0f0f;
+  --color-border-strong: #000000;
+  --color-tooltip-background: rgba(0, 0, 0, 0.8);
+
+  /* Highlights and focus effects */
+  --color-accent-glow: rgba(144, 248, 48, 0.2);
+  --color-card-hover-glow: rgba(144, 248, 48, 0.14);
+  --color-link-hover-glow: rgba(144, 248, 48, 0.3);
+  --color-focus-ring: rgba(144, 248, 48, 0.65);
+
+  /* Layout */
+  --content-max-width: 1100px;
 }
 
 * {
@@ -29,49 +49,51 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: var(--bg);
-  color: var(--fg);
+  font-family: var(--font-family-body);
+  background-color: var(--color-page-background);
+  color: var(--color-text-primary);
 }
 
 /* Links */
 a {
-  color: var(--red-1);
+  color: var(--color-accent);
   text-decoration: none;
 }
 
 a:hover {
-  color: #ff4d4d;
+  color: var(--color-accent-hover);
   text-decoration: underline;
 }
 
 a:active {
-  color: #ffffff;
+  color: var(--color-text-active);
 }
 
 /* Layout */
 main.content {
   width: 100%;
-  max-width: var(--content-max);
+  max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 20px 1rem;
-  font-size: 1.00rem;
+  font-size: var(--font-size-body);
   line-height: 1.65;
 }
 
 main.content h2 {
-  color: var(--red-1);
+  color: var(--color-accent);
+  text-shadow: 0 0 12px var(--color-accent-glow);
 }
 
 .site-header {
-  background-color: var(--nav);
+  background-color: var(--color-navigation-background);
+  box-shadow: inset 0 -1px 0 var(--color-accent-deep);
 }
 
 .site-nav {
-  max-width: var(--content-max);
+  max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 0 1rem;
-  font-size: 1.15rem;
+  font-size: var(--font-size-navigation);
 
   display: flex;
   align-items: stretch;
@@ -98,7 +120,7 @@ main.content h2 {
   display: flex;
   align-items: center;
   padding: 0.85rem 0.9rem;
-  color: #b0b0b0;
+  color: var(--color-text-primary);
   text-decoration: none;
   background: transparent;
   transition: background-color 140ms ease;
@@ -108,17 +130,17 @@ main.content h2 {
 .nav-action:hover,
 .nav-action:focus-visible,
 .nav-action:active {
-  color: var(--fg);
+  color: var(--color-text-primary);
   text-decoration: none;
 }
 
 .nav-action:hover,
 .nav-action:focus-visible {
-  background-color: var(--nav-hover);
+  background-color: var(--color-navigation-hover);
 }
 
 .nav-action:focus-visible {
-  outline: 2px solid var(--focus-ring);
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: -2px;
 }
 
@@ -128,7 +150,7 @@ main.content h2 {
   display: flex;
   align-items: center;
   padding: 0.85rem 0.9rem;
-  color: var(--fg);
+  color: var(--color-text-primary);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -142,14 +164,14 @@ main.content h2 {
 }
 
 .nav-current {
-  color: var(--fg);
+  color: var(--color-text-primary);
 }
 
 .nav-subtitle {
   margin-top: 0.15rem;
   font-weight: 400;
-  color: var(--fg);
-  font-size: 0.9em;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-navigation-subtitle);
 }
 
 @media (max-width: 600px) {
@@ -166,10 +188,10 @@ main.content h2 {
   color: inherit;
   text-decoration: none;
 
-  border: 3px solid #000;
+  border: 5px solid var(--color-border-strong);
   padding: 10px;
   margin: 10px 0;
-  background-color: var(--panel);
+  background-color: var(--color-panel-background);
 
   border-radius: 8px;
   transition: box-shadow 0.15s ease;
@@ -184,7 +206,7 @@ main.content h2 {
 }
 
 .post:hover {
-  box-shadow: 0 0 0 1px var(--red-1);
+  box-shadow: 0 0 0 1px var(--color-accent), 0 0 12px var(--color-card-hover-glow);
 }
 
 .date {
@@ -193,9 +215,10 @@ main.content h2 {
   left: 0;
   float: right;
   padding: 5px;
-  background-color: #180000;
-  color: #800000;
-  font-size: 20px;
+  background-color: var(--color-navigation-hover);
+  border-radius: 4px;
+  color: var(--color-accent-muted);
+  font-size: var(--font-size-post-date);
   display: inline-block;
 }
 
@@ -204,15 +227,15 @@ main.content h2 {
   margin-top: auto;
   text-align: center;
   padding: 3px;
-  background-color: #220000;
-  color: var(--red-2);
+  background-color: var(--color-navigation-background);
+  color: var(--color-accent-muted);
 }
 
 /* “Big link” style used throughout the original site */
 .link {
-  color: #ff4400;
+  color: var(--color-accent);
   text-align: center;
-  font-size: 18px;
+  font-size: var(--font-size-feature-link);
   font-weight: bold;
   text-decoration: none;
   display: block;
@@ -221,14 +244,15 @@ main.content h2 {
 }
 
 .link:hover {
-  color: darkorange;
+  color: var(--color-accent-hover);
+  text-shadow: 0 0 12px var(--color-link-hover-glow);
   text-decoration: none;
 }
 
 /* Code blocks (Markdown fences -> <pre><code>) */
 pre {
-  background-color: var(--code-bg);
-  border: 1px solid var(--code-border);
+  background-color: var(--color-code-background);
+  border: 1px solid var(--color-accent-deep);
   padding: 10px;
   margin: 10px 0;
   border-radius: 5px;
@@ -236,17 +260,17 @@ pre {
 }
 
 pre code {
-  font-family: "Courier New", Courier, monospace;
+  font-family: var(--font-family-code);
   white-space: pre-wrap;
 }
 
 /* Inline code */
 code {
-  background-color: var(--code-bg);
-  color: #ccc;
+  background-color: var(--color-code-background);
+  color: var(--color-text-code);
   padding: 0.1em 0.25em;
   border-radius: 4px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: var(--font-family-code);
 }
 
 /* Don’t double-style code inside pre */
@@ -290,25 +314,25 @@ pre code {
   width: auto;
   object-fit: cover;
   border-radius: 8px;
-  border: 2px solid var(--red-3);
+  border: 2px solid var(--color-accent-deep);
   transition: border-color 0.3s ease;
   cursor: pointer;
   display: block;
 }
 
 .gallery-image:hover {
-  border-color: var(--red-1);
+  border-color: var(--color-accent);
 }
 
 .tooltip {
   position: absolute;
   bottom: 10px;
   left: 10px;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: var(--red-1);
+  background-color: var(--color-tooltip-background);
+  color: var(--color-accent);
   padding: 5px 10px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: var(--font-size-tooltip);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -329,8 +353,8 @@ pre code {
 
 .root {
   padding: 10px 20px;
-  background: #550000;
-  color: lightgray;
+  background: var(--color-accent-deep);
+  color: var(--color-text-diagram);
   border-radius: 5px;
   font-weight: bold;
 }
@@ -340,13 +364,30 @@ pre code {
   height: 50px;
 }
 
+/* Quote */
+main.content blockquote {
+  margin: 1rem 0;
+  padding: 0 0 0 10px;
+  border-left: 2px solid var(--color-accent-deep);
+  font-style: italic;
+  color: inherit;
+}
+
+main.content blockquote > :first-child {
+  margin-top: 0;
+}
+
+main.content blockquote > :last-child {
+  margin-bottom: 0;
+}
+
 /* Password-protected page (links) */
 .pw {
   max-width: 34rem;
   margin: 0 auto 1.25rem;
   padding: 1rem;
-  background: var(--panel);
-  border: 2px solid var(--code-border);
+  background: var(--color-panel-background);
+  border: 2px solid var(--color-accent-deep);
   border-radius: 10px;
 }
 
@@ -357,8 +398,14 @@ pre code {
   align-items: center;
 }
 
-.pw-label {
+.pw-label,
+.pw-hint,
+.pw-err {
   grid-column: 1 / -1;
+  margin: 0;
+}
+
+.pw-label {
   font-weight: 700;
 }
 
@@ -366,17 +413,22 @@ pre code {
   width: 100%;
   padding: 0.55rem 0.7rem;
   border-radius: 8px;
-  border: 1px solid #000;
-  background: #0f0f0f;
-  color: var(--fg);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-input-background);
+  color: var(--color-text-primary);
+}
+
+.pw-input:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 1px;
 }
 
 .pw-btn {
   padding: 0.55rem 0.8rem;
   border-radius: 8px;
-  border: 1px solid #000;
-  background: var(--nav);
-  color: var(--fg);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-navigation-background);
+  color: var(--color-text-primary);
   cursor: pointer;
 }
 
@@ -387,14 +439,9 @@ pre code {
 }
 
 .pw-hint {
-  grid-column: 1 / -1;
-  margin: 0.25rem 0 0;
   opacity: 0.9;
 }
 
 .pw-err {
-  grid-column: 1 / -1;
-  margin: 0.25rem 0 0;
-  color: #ff4d4d;
+  color: var(--color-text-warning);
 }
-
