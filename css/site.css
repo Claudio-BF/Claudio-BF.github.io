@@ -282,6 +282,13 @@ pre code {
   color: inherit;
 }
 
+/* Keep long display equations usable on narrow screens. */
+mjx-container[jax="CHTML"][display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
 /* Generic section list */
 .section-list {
   margin: 1rem 0 0;
