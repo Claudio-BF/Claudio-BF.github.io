@@ -17,17 +17,22 @@ const showError = (message) => {
   error.hidden = false;
 };
 
+// Both the encrypted payload and plaintext bundle use a JSON line + binary data.
+const splitBundle = (bytes) => {
+  const boundary = bytes.indexOf(10);
+  if (boundary < 0) throw new Error("Invalid encrypted bundle");
+  return [
+    JSON.parse(decoder.decode(bytes.subarray(0, boundary))),
+    bytes.subarray(boundary + 1),
+  ];
+};
+
 let payload;
+let ciphertext;
 try {
   const response = await fetch(root.dataset.payload, { cache: "no-store" });
   if (!response.ok) throw new Error(`Could not load links (${response.status})`);
-  const bytes = new Uint8Array(await response.arrayBuffer());
-  const boundary = bytes.indexOf(10);
-  if (boundary < 0) throw new Error("Invalid encrypted bundle");
-  payload = {
-    ...JSON.parse(decoder.decode(bytes.subarray(0, boundary))),
-    ciphertext: bytes.subarray(boundary + 1),
-  };
+  [payload, ciphertext] = splitBundle(new Uint8Array(await response.arrayBuffer()));
   if (payload.hint) {
     hint.textContent = `Hint: ${payload.hint}`;
     hint.hidden = false;
@@ -66,11 +71,9 @@ form.addEventListener("submit", async (event) => {
     const plaintext = await crypto.subtle.decrypt(
       { name: "AES-GCM", iv: fromBase64(payload.cipher.iv) },
       key,
-      payload.ciphertext,
+      ciphertext,
     );
-    const bytes = new Uint8Array(plaintext);
-    const boundary = bytes.indexOf(10);
-    const bundle = JSON.parse(decoder.decode(bytes.subarray(0, boundary)));
+    const [bundle, bytes] = splitBundle(new Uint8Array(plaintext));
 
     content.innerHTML = bundle.html;
     const links = new Map(
@@ -79,7 +82,7 @@ form.addEventListener("submit", async (event) => {
         link,
       ]),
     );
-    let offset = boundary + 1;
+    let offset = 0;
     for (const file of bundle.files) {
       const link = links.get(file.id);
       const fileBytes = bytes.subarray(offset, offset + file.size);

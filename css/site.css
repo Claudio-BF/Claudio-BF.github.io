@@ -23,6 +23,7 @@
   /* Background and border colors */
   --color-page-background: #051005;
   --color-navigation-background: #0b190b;
+  --color-navigation-border: #256c20;
   --color-navigation-hover: #202020;
   --color-panel-background: #151515;
   --color-code-background: #1a1a1a;
@@ -33,7 +34,7 @@
   /* Highlights and focus effects */
   --color-accent-glow: rgba(144, 248, 48, 0.2);
   --color-card-hover-glow: rgba(144, 248, 48, 0.14);
-  --color-link-hover-glow: rgba(144, 248, 48, 0.3);
+  --color-link-hover-glow: rgba(144, 248, 48, 0.24);
   --color-focus-ring: rgba(144, 248, 48, 0.65);
 
   /* Layout */
@@ -81,12 +82,18 @@ main.content {
 
 main.content h2 {
   color: var(--color-accent);
-  text-shadow: 0 0 12px var(--color-accent-glow);
 }
 
 .site-header {
   background-color: var(--color-navigation-background);
-  box-shadow: inset 0 -1px 0 var(--color-accent-deep);
+  box-shadow: inset 0 -1px 0 var(--color-navigation-border);
+}
+
+.site-nav,
+.nav-list {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
 }
 
 .site-nav {
@@ -94,12 +101,8 @@ main.content h2 {
   margin: 0 auto;
   padding: 0 1rem;
   font-size: var(--font-size-navigation);
-
-  display: flex;
-  align-items: stretch;
   justify-content: space-between;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 
 .site-nav--tree {
@@ -110,17 +113,18 @@ main.content h2 {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  align-items: stretch;
   gap: 0;
-  flex-wrap: wrap;
 }
 
-.nav-action {
+.nav-action,
+.nav-brand {
   display: flex;
   align-items: center;
   padding: 0.85rem 0.9rem;
   color: var(--color-text-primary);
+}
+
+.nav-action {
   text-decoration: none;
   background: transparent;
   transition: background-color 140ms ease;
@@ -145,12 +149,6 @@ main.content h2 {
 }
 
 .nav-brand {
-  font-weight: 700;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  padding: 0.85rem 0.9rem;
-  color: var(--color-text-primary);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -189,7 +187,7 @@ main.content h2 {
   text-decoration: none;
 
   border: 5px solid var(--color-border-strong);
-  padding: 10px;
+  padding: 8px;
   margin: 10px 0;
   background-color: var(--color-panel-background);
 
@@ -197,7 +195,17 @@ main.content h2 {
   transition: box-shadow 0.15s ease;
 }
 
-/* prevent global link hover styles from changing card text */
+/* Slightly tighter spacing than the original cards. */
+main.content .post h2 {
+  text-shadow: 0 0 12px var(--color-accent-glow);
+  margin: 0.65em 0;
+}
+
+.post p {
+  margin: 0.8em 0;
+}
+
+/* Keep the entry clickable without recoloring its description. */
 .post:hover,
 .post:visited,
 .post:active {
@@ -207,6 +215,11 @@ main.content h2 {
 
 .post:hover {
   box-shadow: 0 0 0 1px var(--color-accent), 0 0 12px var(--color-card-hover-glow);
+}
+
+.post:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 4px;
 }
 
 .date {
@@ -259,11 +272,6 @@ pre {
   overflow-x: auto;
 }
 
-pre code {
-  font-family: var(--font-family-code);
-  white-space: pre-wrap;
-}
-
 /* Inline code */
 code {
   background-color: var(--color-code-background);
@@ -275,6 +283,8 @@ code {
 
 /* Don’t double-style code inside pre */
 pre code {
+  font-family: var(--font-family-code);
+  white-space: pre-wrap;
   border: none;
   padding: 0;
   border-radius: 0;
@@ -416,13 +426,17 @@ main.content blockquote > :last-child {
   font-weight: 700;
 }
 
-.pw-input {
-  width: 100%;
+.pw-input,
+.pw-btn {
   padding: 0.55rem 0.7rem;
   border-radius: 8px;
   border: 1px solid var(--color-border-strong);
-  background: var(--color-input-background);
   color: var(--color-text-primary);
+}
+
+.pw-input {
+  width: 100%;
+  background: var(--color-input-background);
 }
 
 .pw-input:focus-visible {
@@ -431,11 +445,8 @@ main.content blockquote > :last-child {
 }
 
 .pw-btn {
-  padding: 0.55rem 0.8rem;
-  border-radius: 8px;
-  border: 1px solid var(--color-border-strong);
+  padding-inline: 0.8rem;
   background: var(--color-navigation-background);
-  color: var(--color-text-primary);
   cursor: pointer;
 }
 

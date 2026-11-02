@@ -1,55 +1,50 @@
 (() => {
   "use strict";
 
-  /*
-   * Most posts can use ordinary $...$ and $$...$$ delimiters. These two
-   * protected forms remain available when Markdown-sensitive TeX is needed:
-   *
-   *   Inline:  `\(a*b*c\)`
-   *   Display: a fenced code block whose language is "math"
-   *
-   * Convert them before loading MathJax so its normal startup pass sees the
-   * final DOM. This avoids depending on a custom MathJax startup hook.
-   */
-  const restoreProtectedMath = () => {
-    document
-      .querySelectorAll(
-        'pre > code[data-lang="math"], pre > code.language-math',
-      )
-      .forEach((code) => {
-        const source = code.textContent.trim();
-        const isNumberedEnvironment =
-          /^\\begin\{(?:equation|align|alignat|flalign|gather|multline)\*?\}/.test(
-            source,
-          );
-        const math = document.createElement("div");
-        math.className = "math-display";
-        math.textContent = isNumberedEnvironment
-          ? source
-          : `\\[${source}\\]`;
-        code.parentElement.replaceWith(math);
-      });
-
-    document.querySelectorAll("code").forEach((code) => {
-      if (code.closest("pre")) return;
-
-      const source = code.textContent.trim();
-      if (!source.startsWith("\\(") || !source.endsWith("\\)")) return;
-
-      const math = document.createElement("span");
-      math.className = "math-inline";
-      math.textContent = source;
-      code.replaceWith(math);
-    });
+  // Restore TeX protected from Markdown before MathJax's startup pass.
+  const replaceMath = (element, tag, className, source) => {
+    const math = document.createElement(tag);
+    math.className = className;
+    math.textContent = source;
+    element.replaceWith(math);
   };
 
-  restoreProtectedMath();
+  for (const math of document.querySelectorAll("[data-math-tex]")) {
+    math.textContent = decodeURIComponent(math.getAttribute("data-math-tex"));
+    math.removeAttribute("data-math-tex");
+  }
+
+  for (const code of document.querySelectorAll(
+    'pre > code[data-lang="math"], pre > code.language-math',
+  )) {
+    const source = code.textContent.trim();
+    const isNumberedEnvironment =
+      /^\\begin\{(?:equation|align|alignat|flalign|gather|multline)\*?\}/.test(source);
+    replaceMath(
+      code.parentElement, "div", "math-display",
+      isNumberedEnvironment ? source : `\\[${source}\\]`,
+    );
+  }
+
+  for (const code of document.querySelectorAll("code")) {
+    if (code.closest("pre")) continue;
+
+    const source = code.textContent.trim();
+    if (!source.startsWith("\\(") || !source.endsWith("\\)")) continue;
+
+    replaceMath(code, "span", "math-inline", source);
+  }
 
   window.MathJax = {
     tex: {
       inlineMath: { "[+]": [["$", "$"]] },
       processEscapes: true,
       tags: "ams",
+    },
+    // Typeset the restored equations directly. Leave prices and code examples
+    // outside these elements alone without a page-wide ignore rule.
+    startup: {
+      elements: [".math-inline, .math-display"],
     },
   };
 
